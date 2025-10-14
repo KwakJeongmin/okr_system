@@ -5,10 +5,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-	
+
 	@RequestMapping("/")
-	public String hello() {
+	public String main() {
 		return "main";
+	}
+
+	@RequestMapping("/myokr")
+	public String myokr() {
+		return "myokr";
+	}
+
+	@RequestMapping("/teamokr")
+	public String teamokr() {
+		return "teamokr";
+	}
+
+	@RequestMapping("/companyokr")
+	public String companyokr() {
+		return "companyokr";
 	}
 
 }
