@@ -13,6 +13,11 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- axios 로드 후에 ems-core-init.js 로드 -->
+	<script src="/lib/js/ems-core-init.js"></script>
+    
     <style>
         :root {
             --primary-color: #3b82f6;
@@ -598,6 +603,35 @@
     </style>
 </head>
 <body>
+	<script>
+	/**************************************************
+	* Ready
+	**************************************************/
+	jQuery(document).ready(function() {
+		fncGetTestList();
+	});
+	
+	/**************************************************
+	*  FUNCTION 명 : fncGetTestList
+	*  FUNCTION 기능설명 : 데이터 목록 조회 테스트
+	**************************************************/
+	function fncGetTestList() {
+	    var params = new Object();
+	    
+		axiosInstance.get("/test/testLstInqr", {params})
+		.then(function (response) {
+			if(response.data.status == 200) {
+				let dataList = response.data.data.list;	
+				console.log(dataList[0].testNm);
+			}
+			//gfnClearDataLoding();
+		})
+		.catch(function(error) {
+			//gfnClearDataLoding();
+			console.log(error);
+		});
+	}
+	</script>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
